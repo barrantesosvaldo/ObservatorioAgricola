@@ -25,5 +25,17 @@ app.controller('preciosController', function($scope, $http, API_URL) {
         $('#myModal').modal('show');
     }
 
+    //devuelve la lista de cantones desde la API
+    $http.get(API_URL + "canton").success(function(response) {
+        $scope.cantones = response;
+    });
+
+    $scope.obtenerDistritos = function(id) {
+        $http.get(API_URL + "distrito/" + id).success(function(response) {
+            $scope.distritos = response;
+        });
+
+    };
+
 
 });

@@ -12,7 +12,16 @@ class CreateUsuarioTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('usuario', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre')->unique();
+            $table->string('contrasenna');
+            $table->binary('imagen')->nullable();
+            $table->integer('id_tipo_usuario')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('id_tipo_usuario')->references('id')->on('tipo_usuario');
+        });
     }
 
     /**
@@ -22,6 +31,6 @@ class CreateUsuarioTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('usuario');
     }
 }

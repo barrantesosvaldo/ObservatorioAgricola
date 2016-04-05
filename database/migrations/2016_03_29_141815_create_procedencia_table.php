@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoProductoTable extends Migration
+class CreateProcedenciaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateTipoProductoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_producto', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre')->unique();
+        Schema::create('procedencia', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class CreateTipoProductoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_producto');
+        Schema::drop('procedencia');
     }
 }

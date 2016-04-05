@@ -12,7 +12,14 @@ class CreateUnidadVentaTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('unidad_venta', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('unidad')->unique();
+            $table->integer('id_tipo_producto')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('id_tipo_producto')->references('id')->on('tipo_producto');
+        });
     }
 
     /**
@@ -22,6 +29,6 @@ class CreateUnidadVentaTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('unidad_venta');
     }
 }

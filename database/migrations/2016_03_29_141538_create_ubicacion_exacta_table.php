@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductoTable extends Migration
+class CreateUbicacionExactaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,13 @@ class CreateProductoTable extends Migration
      */
     public function up()
     {
-        Schema::create('producto', function (Blueprint $table) {
+        Schema::create('ubicacion_exacta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre')->unique();
-            $table->binary('imagen')->nullable();
-            $table->integer('id_tipo_producto')->unsigned();
+            $table->string('nombre');
+            $table->integer('id_distrito')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_tipo_producto')->references('id')->on('tipo_producto');
+            $table->foreign('id_distrito')->references('id')->on('distrito');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateProductoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('producto');
+        Schema::drop('ubicacion_exacta');
     }
 }

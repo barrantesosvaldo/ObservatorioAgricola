@@ -6,15 +6,21 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CantonTableSeeder' => $baseDir . '/database/seeds/CantonTableSeeder.php',
+    'CreateCantonTable' => $baseDir . '/database/migrations/2016_03_29_141715_create_canton_table.php',
+    'CreateDistritoTable' => $baseDir . '/database/migrations/2016_03_29_141632_create_distrito_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePrecioTable' => $baseDir . '/database/migrations/2016_03_29_141747_create_precio_table.php',
+    'CreateProcedenciaTable' => $baseDir . '/database/migrations/2016_03_29_141815_create_procedencia_table.php',
     'CreateProductoTable' => $baseDir . '/database/migrations/2016_03_15_152732_create_producto_table.php',
     'CreateTipoProductoTable' => $baseDir . '/database/migrations/2016_03_15_152747_create_tipo_producto_table.php',
     'CreateTipoUsuarioTable' => $baseDir . '/database/migrations/2016_03_15_152920_create_tipo_usuario_table.php',
-    'CreateUbicacionTable' => $baseDir . '/database/migrations/2016_03_15_152813_create_ubicacion_table.php',
+    'CreateUbicacionExactaTable' => $baseDir . '/database/migrations/2016_03_29_141538_create_ubicacion_exacta_table.php',
     'CreateUnidadVentaTable' => $baseDir . '/database/migrations/2016_03_15_152833_create_unidad_venta_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateUsuarioTable' => $baseDir . '/database/migrations/2016_03_15_152852_create_usuario_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'DistritoTableSeeder' => $baseDir . '/database/seeds/DistritoTableSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

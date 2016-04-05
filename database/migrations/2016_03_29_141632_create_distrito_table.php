@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoProductoTable extends Migration
+class CreateDistritoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,13 @@ class CreateTipoProductoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_producto', function (Blueprint $table) {
+        Schema::create('distrito', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre')->unique();
+            $table->string('nombre');
+            $table->integer('id_canton')->unsigned();
             $table->timestamps();
+
+            $table->foreign('id_canton')->references('id')->on('canton');
         });
     }
 
@@ -26,6 +29,6 @@ class CreateTipoProductoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_producto');
+        Schema::drop('distrito');
     }
 }

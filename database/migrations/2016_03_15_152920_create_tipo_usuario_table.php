@@ -12,7 +12,11 @@ class CreateTipoUsuarioTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('tipo_usuario', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre')->unique();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +26,6 @@ class CreateTipoUsuarioTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('tipo_usuario');
     }
 }
