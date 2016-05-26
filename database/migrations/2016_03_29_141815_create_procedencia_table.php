@@ -15,7 +15,10 @@ class CreateProcedenciaTable extends Migration
         Schema::create('procedencia', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
+            $table->integer('id_tipo_producto')->unsigned();
             $table->timestamps();
+
+            $table->foreign('id_tipo_producto')->references('id')->on('tipo_producto');
         });
     }
 

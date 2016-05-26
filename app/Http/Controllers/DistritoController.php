@@ -9,8 +9,13 @@ use App\Http\Controllers\Controller;
 
 class DistritoController extends Controller
 {
-    public function obtenerDistritos($id)
+    public function obtenerDistritos($id_canton)
 	{
-		return Distrito::select('id', 'nombre')->where('id_canton', $id)->orderBy('id', 'asc')->get();
+		return Distrito::select('id', 'nombre')->where('id_canton', $id_canton)->orderBy('id', 'asc')->get();
+	}
+
+	public function obtenerDistrito($id)
+	{
+		return Distrito::find($id);
 	}
 }

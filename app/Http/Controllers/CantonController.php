@@ -9,8 +9,13 @@ use App\Http\Controllers\Controller;
 
 class CantonController extends Controller
 {
-    public function obtenerCantones()
+    public function obtenerCantones($id_provincia)
 	{
-		return Canton::select('id', 'nombre')->orderBy('id', 'asc')->get();
+		return Canton::select('id', 'nombre')->where('id_provincia', $id_provincia)->orderBy('id', 'asc')->get();
+	}
+
+	public function obtenerCanton($id)
+	{
+		return Canton::find($id);
 	}
 }

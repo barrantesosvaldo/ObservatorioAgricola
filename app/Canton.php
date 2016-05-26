@@ -13,6 +13,11 @@ class Canton extends Model
      */
     protected $table = 'canton';
 
+    public function provincia()
+    {
+        return $this->belongsTo('App\Provincia', 'id_provincia');
+    }
+
     public function distritos()
     {
         return $this->hasMany('App\Distrito', 'id_canton');

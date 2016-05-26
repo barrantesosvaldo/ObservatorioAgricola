@@ -13,8 +13,13 @@ class Distrito extends Model
      */
     protected $table = 'distrito';
 
-    public function post()
+    public function canton()
     {
         return $this->belongsTo('App\Canton', 'id_canton');
+    }
+
+    public function ubicacionExacta()
+    {
+        return $this->hasMany('App\UbicacionExacta', 'id_distrito');
     }
 }

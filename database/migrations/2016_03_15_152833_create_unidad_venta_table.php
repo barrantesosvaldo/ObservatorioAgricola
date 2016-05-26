@@ -14,7 +14,7 @@ class CreateUnidadVentaTable extends Migration
     {
         Schema::create('unidad_venta', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('unidad')->unique();
+            $table->string('unidad');
             $table->integer('id_tipo_producto')->unsigned();
             $table->timestamps();
 
