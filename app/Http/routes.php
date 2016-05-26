@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('menu');
 });
 
+Route::group(['prefix' => 'api/v1'], function()
+{
+	Route::resource('authenticate', 'AuthenticateController', ['only' => ['menu']]);
+	Route::post('authenticate', 'AuthenticateController@authenticate');
+});
+
 //ProvinciaController
 Route::get('/api/v1/provincia', 'ProvinciaController@obtenerProvincias');
 //CantonController

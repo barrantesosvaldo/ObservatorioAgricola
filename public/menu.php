@@ -44,17 +44,19 @@
 
 
         <!-- Librerías (AngularJS, UI-Bootstrap, JQuery, Bootstrap) -->
-        <script src="<?= asset('app/lib/angular/angular.js') ?>"></script> <!-- angular.min.js -->
-        <script src="<?= asset('app/lib/angular/angular-animate.js') ?>"></script> <!-- angular-animate.min.js -->
+        <script src="<?= asset('app/lib/angular/angular.js') ?>"></script>
+        <script src="<?= asset('app/lib/angular/angular-animate.js') ?>"></script>
         <script src="<?= asset('app/lib/angular/angular-locale_es-cr.js') ?>"></script>
-        <script src="<?= asset('app/lib/angular/angular-route.js') ?>"></script> <!-- angular-route.min.js -->
+        <script src="<?= asset('app/lib/angular/angular-route.js') ?>"></script>
         <script src="<?= asset('app/lib/angular/angular-touch.js') ?>"></script>
+        <script src="<?= asset('app/lib/angular/angular-ui-router.js') ?>"></script>
         <script src="<?= asset('app/lib/googlechart/ng-google-chart.js') ?>"></script>
         <script src="https://maps.googleapis.com/maps/api/js"></script>
         <script src="<?= asset('app/lib/lodash/lodash.js') ?>"></script>
         <script src="<?= asset('app/lib/angular/angular-google-maps.js') ?>"></script>
         <script src="<?= asset('app/lib/angular/angular-simple-logger.js') ?>"></script> 
         <script src="<?= asset('app/lib/ui-bootstrap/ui-bootstrap-tpls-1.3.2.js') ?>"></script>
+        <script src="<?= asset('app/lib/satellizer/satellizer.js') ?>"></script>
         <script src="<?= asset('js/jquery.min.js') ?>"></script>
         <script src="<?= asset('js/bootstrap.min.js') ?>"></script>
 
