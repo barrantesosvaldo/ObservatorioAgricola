@@ -14,6 +14,9 @@ use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
 class ArchivoController extends Controller
 {
 	

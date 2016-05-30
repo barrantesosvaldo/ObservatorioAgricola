@@ -29,8 +29,9 @@
                         <li><a ng-click="setRoute('precios')" class="btn">Precios</a></li>
                         <!--<li><a ng-click="setRoute('excel')" class="btn">Agregar Excel</a></li> -->
                         <li><a ng-click="setRoute('estadistica')" class="btn">Estadística</a></li>
-                        <li><a ng-click="setRoute('geoportal')" class="btn">Geoportal</a></li>
+                        <li><a ng-click="setRoute('geoportal2')" class="btn">Geoportal</a></li>
                         <li><a ng-click="setRoute('ingresar')" class="btn">Ingresar</a></li>
+                        <li><a ng-click="cerrarSesion('ingresar')" class="btn">Cerrar sesión</a></li>
                     </ul>
                     
                 </div>

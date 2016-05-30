@@ -15,15 +15,20 @@ class AuthenticateController extends Controller
         // the user from retrieving their token if they don't already have it
         $this->middleware('jwt.auth', ['except' => ['authenticate']]);
     }
+
     /**
      * Return the user
      *
      * @return Response
      */
-    public function menu()  // original function name: index
+    public function index()
     {
-        return "success!";
+        // Retrieve all the users in the database and return them        
+        $users = User::all();
+        return $users;
     }
+
+
     /**
      * Return a JWT
      *

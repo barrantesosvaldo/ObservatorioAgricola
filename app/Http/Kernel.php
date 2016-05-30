@@ -26,7 +26,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
-    protected $middlewareGroups = [
+    /*protected $middlewareGroups = [
         'web' => [
             \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class, //added
             \App\Http\Middleware\EncryptCookies::class,
@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
         ],
-    ];
+    ];*/
 
     /**
      * The application's route middleware.
@@ -52,7 +52,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        /*'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,*/
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class
     ];

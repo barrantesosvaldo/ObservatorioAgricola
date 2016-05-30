@@ -1,20 +1,20 @@
-app.controller('ingresarController', function($auth, $scope, $location) {
+app.controller('ingresarController', function($state, $auth) {
 	
-	$scope.ingresar = function() {
-
-		var credentials = {
-			email: $scope.email,
-			password: $scope.password
+	/*$scope.ingresar = function() {
+		console.log("entra");
+		$scope.credentials = {
+			email: $scope.email;
+			password: $scope.password;
 		}
 
 		$auth.login(credentials).then(function(data) {
-			$location.path('bienvenido');
+			$state.go('bienvenido');
 		}, function(error) {
 			console.log(error);
 		});
-	}
+	}*/
 
-	/*var vm = this;
+	var vm = this;
 
 		vm.login = function() {
 
@@ -31,5 +31,5 @@ app.controller('ingresarController', function($auth, $scope, $location) {
 			}, function(error) {
 				console.log(error);
 			});
-		}*/
+		}
 });

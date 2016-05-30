@@ -6,12 +6,8 @@ app.directive('mapCanvas', function() {
                 zoom: 8,
                 center: new google.maps.LatLng(9.917151, -84.0034567)
             };
-            /*var markers = new google.maps.Marker({
-                position: new google.maps.LatLng(9.917151, -84.0034567),
-                map: map
-              });*/
 
-            //new google.maps.Map(element[0], mapOptions);
+            new google.maps.Map(element[0], mapOptions);
 
         }
     };
