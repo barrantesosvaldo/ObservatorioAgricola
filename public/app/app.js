@@ -1,5 +1,5 @@
 var app = angular.module('observatorio_agropecuario', ['ngAnimate', 'ngRoute', 'satellizer', 
-	'ui.bootstrap', 'googlechart', 'uiGmapgoogle-maps'])
+	'ui.bootstrap', 'googlechart'/*, 'uiGmapgoogle-maps'*/])
 	.constant('API_URL', 'http://localhost/observatorio-agricola/public/api/v1/')
 	.config(function($routeProvider, $authProvider, $locationProvider) {
 			
@@ -20,11 +20,11 @@ var app = angular.module('observatorio_agropecuario', ['ngAnimate', 'ngRoute', '
 			.when('/estadistica', {
 				templateUrl:'partials/estadistica.php'
 			})
-			/*.when('/geoportal', {
+			.when('/geoportal', {
 				templateUrl:'partials/geoportal.php'
-			})*/
-			.when('/geoportal2', {
-				templateUrl:'partials/geoportal2.php'
+			})
+			.when('/registro_usuarios', {
+				templateUrl:'partials/registro.php'
 			})
 			.when('/ingresar', {
 				templateUrl:'partials/ingresar.php'

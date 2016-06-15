@@ -1,6 +1,11 @@
-app.controller('estadisticaController', function($scope, $http, API_URL) {
+app.controller('estadisticaController', function($scope, $filter, $timeout, $http, API_URL	) {
 
 	$scope.id_tipo_producto = "";
+    
+    //devuelve la lista de tipos de productos
+    $http.get(API_URL + "tipo-producto").success(function(response) {
+        $scope.tiposProducto = response;
+    });
 
 	//devuelve la lista de productos, unidades de venta y procedencias de un tipo de producto seleccionado
     $scope.obtenerProductos = function(id) {
@@ -11,9 +16,12 @@ app.controller('estadisticaController', function($scope, $http, API_URL) {
         });
     };  
 
-	$scope.cargarGrafico = function($id) {
+    //carga el gráfico con una fecha específica.
+	$scope.cargarGrafico = function() {
 
-		$http.get(API_URL + "precios/fecha/" + $id).success(function(response) {
+		var fecha = $filter('date')($scope.estadistica.fecha, "yyyy-MM-dd");
+
+		$http.get(API_URL + "precios/media-fecha/" + $scope.estadistica.id_producto + "/" + fecha).success(function(response) {
 	        precios = response;
 
 	    	var cantidadFilas = precios.length;
@@ -21,10 +29,10 @@ app.controller('estadisticaController', function($scope, $http, API_URL) {
 	    	var filas = new Array();
 
 			datos.addColumn('string', 'Fecha');
-			datos.addColumn('number', 'Precio');
-			console.log(cantidadFilas);
+			datos.addColumn('number', 'Precio promedio');
+
 			for(var i = 0; i < cantidadFilas; i++) {
-		    	filas.push([precios[i].fecha, precios[i].precio]);
+		    	filas.push([fecha, precios[i].media_precios]);
 		    }
 
 		    datos.addRows(filas);
@@ -36,7 +44,7 @@ app.controller('estadisticaController', function($scope, $http, API_URL) {
 
     		chart.options = {
     			title: 'Evolución de precios de productos',
-    			hAxis: {title: 'Precios'},
+    			hAxis: {title: 'Precios promedio'},
     			vAxis: {title: 'Fecha'}
 		    };
 
@@ -50,10 +58,5 @@ app.controller('estadisticaController', function($scope, $http, API_URL) {
 		    $scope.chartCuadroEvolutivo = chart;
     	});
 	};
-    
-    //devuelve la lista de tipos de productos
-    $http.get(API_URL + "tipo-producto").success(function(response) {
-        $scope.tiposProducto = response;
-    });
 
 });

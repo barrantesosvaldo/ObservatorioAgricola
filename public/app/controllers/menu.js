@@ -5,7 +5,6 @@ app.controller('menuController', function($auth, $scope, $location) {
 		$location.path(route);
 	};
 
-
 	// cierra la sesión del usuario y lo redirige a la página de inicio de sesión
 	$scope.cerrarSesion = function(route) {
 

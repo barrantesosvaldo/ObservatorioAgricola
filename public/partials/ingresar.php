@@ -21,8 +21,10 @@
 		    <div class="form-group">
                 <div>
                     <button type="button" class="btn btn-primary" id="btn-ingresar" ng-click="ingresar()" ng-disabled="frmIngresar.$invalid">Ingresar</button>
+                    <p class="text-danger">{{mensaje}}</p>
                 </div>
             </div>
+
         </form>
 	</div>
 </div>

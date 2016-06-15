@@ -13,7 +13,6 @@ app.controller('ubicacionesController', function($scope, $http, API_URL) {
     };
 
     $scope.$watch('precio.idCanton', function(idViejo, idNuevo) {
-    	$window.alert("hola");
     	$scope.obtenerDistritos(idNuevo);
     });
 

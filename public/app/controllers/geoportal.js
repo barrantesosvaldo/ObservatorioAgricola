@@ -1,59 +1,18 @@
-app.controller('geoportalController', function($scope, $http, API_URL, $interval/*, uiGmapGoogleMapApi, uiGmapIsReady*/) {
+app.controller('geoportalController', function($scope, $http, API_URL) {
 
-
-    //devuelve la lista de precios 
-    /*$http.get(API_URL + "precios").success(function(response) {
-        $scope.precios = response;
-
-        $scope.addMarker(9.917151, -84.0034567);
+	$scope.id_tipo_producto = "";
+    
+    //devuelve la lista de tipos de productos
+    $http.get(API_URL + "tipo-producto").success(function(response) {
+        $scope.tiposProducto = response;
     });
 
-
-	$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };*/
-
-	// marcadores
-	/*$scope.markers = [];
-
-	$scope.id = 0;*/
-
-	// genera marcadores
-	/*$scope.addMarker = function (latitude, longitude) {
-
-        $scope.markers.push({
-            latitude: parseFloat(latitude),
-            longitude: parseFloat(longitude)
+	//devuelve la lista de productos, unidades de venta y procedencias de un tipo de producto seleccionado
+    $scope.obtenerProductos = function(id) {
+        //productos
+        $http.get(API_URL + "productos/" + id).success(function(response) {
+            $scope.productos = response;
+            $scope.id_producto = "";
         });
-
-        console.log('Maker add: ' + $scope.markers);
-    }; */
-
-    angular.extend($scope, {
-        map: {
-            center: {
-                latitude: 42.3349940452867,
-                longitude:-71.0353168884369
-            },
-            zoom: 11,
-            markers: [],
-            events: {
-            click: function (map, eventName, originalEventArgs) {
-                var e = originalEventArgs[0];
-                var lat = e.latLng.lat(),lon = e.latLng.lng();
-                var marker = {
-                    id: Date.now(),
-                    coords: {
-                        latitude: lat,
-                        longitude: lon
-                    }
-                };
-                $scope.map.markers.push(marker);
-                console.log($scope.map.markers);
-                $scope.$apply();
-            }
-        }
-        }
-    });
-
-
-
+    };
 });

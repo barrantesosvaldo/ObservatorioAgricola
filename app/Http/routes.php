@@ -23,34 +23,47 @@ Route::group(['prefix' => 'api/v1'], function()
 
 //ProvinciaController
 Route::get('/api/v1/provincia', 'ProvinciaController@obtenerProvincias');
+
 //CantonController
 Route::get('/api/v1/cantones/{id}', 'CantonController@obtenerCantones');
 Route::get('/api/v1/canton/{id}', 'CantonController@obtenerCanton');
+
 //DistritoController
 Route::get('/api/v1/distritos/{id}', 'DistritoController@obtenerDistritos');
 Route::get('/api/v1/distrito/{id}', 'DistritoController@obtenerDistrito');
+
 //TipoProductoController
 Route::get('/api/v1/tipo-producto', 'TipoProductoController@obtenerTipoProductos');
+
 //ProductoController
 Route::get('/api/v1/productos/{id}', 'ProductoController@obtenerProductos');
 Route::get('/api/v1/producto/{id}', 'ProductoController@obtenerTipoProducto');
 Route::post('/api/v1/producto/{id_tipo_producto}', 'ProductoController@guardarProducto');
 Route::post('/api/v1/producto/{id}/{id_tipo_producto}', 'ProductoController@actualizarProducto');
 Route::delete('/api/v1/producto/{id}', 'ProductoController@eliminarProducto');
+
 //UnidadVentaController
 Route::get('/api/v1/unidad-venta/{id_tipo_producto}', 'UnidadVentaController@obtenerUnidadesVenta');
+
 //UbicacionExactaController
 Route::get('/api/v1/ubicacion-exacta/{id}', 'UbicacionExactaController@obtenerUbicacionExacta');
+
 //ProcedenciaController
 Route::get('/api/v1/procedencia/{id_tipo_producto}', 'ProcedenciaController@obtenerProcedencias');
+
 //PrecioController
 Route::get('/api/v1/precios', 'PrecioController@obtenerPrecios');
 Route::get('/api/v1/precio/{id}', 'PrecioController@obtenerPrecio');
+Route::get('/api/v1/precios/media-fecha/{id_producto}/{fecha}', 'PrecioController@mediaPreciosFecha');
+Route::get('/api/v1/precios/media-fechas', 'PrecioController@mediaPreciosRangoFechas');
+Route::get('/api/v1/precios/ubicacion-precios/{id_producto}', 'PrecioController@ubicacionPrecios');
 Route::post('/api/v1/precio', 'PrecioController@guardarPrecio');
 Route::post('/api/v1/precio/{id}', 'PrecioController@actualizarPrecio');
 Route::delete('/api/v1/precio/{id}', 'PrecioController@eliminarPrecio');
-Route::get('/api/v1/precios/media-fecha', 'PrecioController@mediaPreciosFecha');
-Route::get('/api/v1/precios/media-fechas', 'PrecioController@mediaPreciosRangoFechas');
+Route::post('/api/v1/precios', 'PrecioController@guardarMasivoPrecios');
+
+//UsuarioController
+Route::post('/api/v1/registro_usuario', 'UserController@guardarUsuario');
 
 
 

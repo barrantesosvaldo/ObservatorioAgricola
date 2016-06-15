@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
+
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -50,43 +52,6 @@ class PrecioController extends Controller
 				->get();
 	}
 
-	public function mediaPreciosFecha(Request $request)
-	{
-		$id_producto = $request->input('id_producto');
-		$fecha = $request->input('fecha');
-
-		return Precio::where([['id_producto',$id_producto], ['fecha', $fecha]])
-				->select(DB::raw('AVG(precio) as media_precios'))
-				->groupBy('id_producto')
-				->get();
-	}
-
-	public function mediaPreciosRangoFechas(Request $request)
-	{
-		$id_producto = $request->input('id_producto');
-		$fecha_inicio = $request->input('fecha_inicio');
-		$fecha_fin = $request->input('fecha_fin');
-
-		$rango_fechas = [$fecha_inicio, $fecha_fin];
-
-		return Precio::where('id_producto', $id_producto)
-				->whereBetween('fecha', $rango_fechas)
-				->select(DB::raw('AVG(precio) as media_precios'))
-				->groupBy('id_producto')
-				->get();
-	}
-
-	public function obtenerPreciosFecha($id)
-	{
-		return Precio::leftJoin('producto', 'precio.id_producto', '=', 'producto.id')
-			->select(
-				'precio.fecha as fecha', 
-				'precio.precio as precio',
-				'producto.nombre as producto')
-			->where('producto.id', '=', $id)
-			->orderBy('fecha', 'asc')->get();
-	}
-
 	public function obtenerPrecio($id)
 	{
 		return Precio::leftJoin('unidad_venta', 'precio.id_unidad_venta', '=', 'unidad_venta.id')
@@ -113,8 +78,51 @@ class PrecioController extends Controller
 				->where('precio.id', '=', $id)
 				->orderBy('fecha', 'asc')
 				->first();
-        //return Precio::find($id);
     }
+
+	public function mediaPreciosFecha($id_producto, $fecha)
+	{
+		//$id_producto = $request->input('id_producto');
+		//$fecha = $request->input('fecha');
+
+		//return Precio::where([['id_producto',$id_producto], ['fecha', $fecha]])
+		return Precio::where([['id_producto',$id_producto], ['fecha', $fecha]])
+				->select(DB::raw('AVG(precio) as media_precios'))
+				->groupBy('id_producto')
+				->get();
+	}
+
+	public function ubicacionPrecios($id_producto)
+	{
+		return Precio::leftJoin('ubicacion_exacta', 'precio.id_ubicacion_exacta', '=', 'ubicacion_exacta.id')
+			->leftJoin('distrito', 'ubicacion_exacta.id_distrito', '=', 'distrito.id')
+			->leftJoin('canton', 'distrito.id_canton', '=', 'canton.id')
+			->leftJoin('provincia', 'canton.id_provincia', '=', 'provincia.id')
+			->select(
+				'precio.id_producto as id_producto',
+				'ubicacion_exacta.nombre as ubicacion_exacta',
+				'distrito.nombre as distrito',
+				'canton.nombre as canton',
+				'provincia.nombre as provincia')
+			->where('precio.id_producto', '=', $id_producto)
+			->groupBy('distrito.id')
+			->get();
+	}
+
+	public function mediaPreciosRangoFechas(Request $request)
+	{
+		$id_producto = $request->input('id_producto');
+		$fecha_inicio = $request->input('fecha_inicio');
+		$fecha_fin = $request->input('fecha_fin');
+
+		$rango_fechas = [$fecha_inicio, $fecha_fin];
+
+		return Precio::where('id_producto', $id_producto)
+				->whereBetween('fecha', $rango_fechas)
+				->select(DB::raw('AVG(precio) as media_precios'))
+				->groupBy('id_producto')
+				->get();
+	}
 
 	public function guardarPrecio(Request $request)
 	{
@@ -199,5 +207,48 @@ class PrecioController extends Controller
 		$precio->delete();
 
 		return 'Precio eliminado correctamente con el id' . $id;
+	}
+
+	public function guardarMasivoPrecios(Request $request)
+	{
+		$precios = json_decode($request->getContent());
+
+		foreach ($precios as $data) {
+
+			$ubicacion_exacta_nombre = $data->ubicacion_exacta;
+
+			$count = UbicacionExacta::select('nombre')
+						->where('nombre', 'like', $ubicacion_exacta_nombre)
+						->count();
+
+			if ($count > 0) {
+				$ubicacion_exacta = UbicacionExacta::select('id', 'nombre')
+							->where('nombre', 'like', $ubicacion_exacta_nombre)
+							->first();
+			} else {
+				$ubicacion_exacta = new UbicacionExacta;
+
+				$ubicacion_exacta->nombre = $data->ubicacion_exacta;
+				$ubicacion_exacta->id_distrito = $data->id_distrito;
+
+				$ubicacion_exacta->save();
+			}
+
+			$id_ubicacion_exacta = $ubicacion_exacta->id;
+
+			$precio = new Precio;
+
+			$precio->fecha = $data->fecha;
+			$precio->precio = $data->precio;
+			$precio->valor_unidad_venta = $data->valor_unidad_venta;
+			$precio->id_producto = $data->id_producto;
+			$precio->id_unidad_venta = $data->id_unidad_venta;
+			$precio->id_ubicacion_exacta = $id_ubicacion_exacta;
+			$precio->id_procedencia = $data->id_procedencia;
+
+			$precio->save();
+		}
+
+		return 'Precios guardados correctamente';
 	}
 }
