@@ -40,7 +40,7 @@
                 <th>Distrito</th>
                 <th>Ubicación exacta</th>
                 <th>Procedencia</th>
-                <th>Valor de unidad de venta</th>
+                <th>Cantidad</th>
                 <th>Unidad de venta</th>
                 <th>Precio</th>
                 <th>Fecha</th>

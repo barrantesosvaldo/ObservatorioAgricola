@@ -24,6 +24,11 @@ class ProcedenciaController extends Controller
         $this->middleware('jwt.auth');
     }*/
 
+    public function procedencias()
+	{
+		return Procedencia::select('id', 'nombre')->orderBy('id', 'asc')->get();
+	}
+
     public function obtenerProcedencias($id_tipo_producto)
 	{
 		return Procedencia::select('id', 'nombre')->where('id_tipo_producto', $id_tipo_producto)->orderBy('id', 'asc')->get();

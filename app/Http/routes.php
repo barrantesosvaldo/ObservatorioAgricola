@@ -31,11 +31,13 @@ Route::get('/api/v1/canton/{id}', 'CantonController@obtenerCanton');
 //DistritoController
 Route::get('/api/v1/distritos/{id}', 'DistritoController@obtenerDistritos');
 Route::get('/api/v1/distrito/{id}', 'DistritoController@obtenerDistrito');
+Route::get('/api/v1/distritos', 'DistritoController@distritos');
 
 //TipoProductoController
 Route::get('/api/v1/tipo-producto', 'TipoProductoController@obtenerTipoProductos');
 
 //ProductoController
+Route::get('/api/v1/productos', 'ProductoController@productos');
 Route::get('/api/v1/productos/{id}', 'ProductoController@obtenerProductos');
 Route::get('/api/v1/producto/{id}', 'ProductoController@obtenerTipoProducto');
 Route::post('/api/v1/producto/{id_tipo_producto}', 'ProductoController@guardarProducto');
@@ -44,12 +46,14 @@ Route::delete('/api/v1/producto/{id}', 'ProductoController@eliminarProducto');
 
 //UnidadVentaController
 Route::get('/api/v1/unidad-venta/{id_tipo_producto}', 'UnidadVentaController@obtenerUnidadesVenta');
+Route::get('/api/v1/unidades-venta', 'UnidadVentaController@unidadesVenta');
 
 //UbicacionExactaController
 Route::get('/api/v1/ubicacion-exacta/{id}', 'UbicacionExactaController@obtenerUbicacionExacta');
 
 //ProcedenciaController
 Route::get('/api/v1/procedencia/{id_tipo_producto}', 'ProcedenciaController@obtenerProcedencias');
+Route::get('/api/v1/procedencias', 'ProcedenciaController@procedencias');
 
 //PrecioController
 Route::get('/api/v1/precios', 'PrecioController@obtenerPrecios');

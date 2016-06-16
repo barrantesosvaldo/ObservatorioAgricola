@@ -20,7 +20,12 @@ class UnidadVentaController extends Controller
         // except for the authenticate method. We don't want to prevent
         // the user from retrieving their token if they don't already have it
         $this->middleware('jwt.auth');
-    }*/
+    }*/	
+
+    public function unidadesVenta()
+	{
+		return UnidadVenta::select('id', 'unidad')->orderBy('id', 'asc')->get();
+	}
 
     public function obtenerUnidadesVenta($id_tipo_producto)
 	{

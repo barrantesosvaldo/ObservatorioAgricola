@@ -23,6 +23,13 @@ class ProductoController extends Controller
         $this->middleware('jwt.auth');
     }*/
 
+	public function productos()
+	{
+		return Producto::select('id', 'nombre')
+					->orderBy('id', 'asc')
+					->get();
+	}
+	
 	public function obtenerProductos($id)
 	{
 		return Producto::select('id', 'nombre')->where('id_tipo_producto', $id)->orderBy('id', 'asc')->get();
